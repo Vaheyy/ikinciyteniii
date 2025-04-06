@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İkinci Yeni Akımı ve Şairleri</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Genel Stil ve Koyu Tema */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #1c1c1c;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    /* Navbar */
+    .navbar {
+      background-color: #121212;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #e0e0e0 !important;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #fff !important;
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: #fff;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+    }
+    /* Bölüm Başlıkları */
+    .section-title {
+      margin: 3rem 0 1.5rem;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    /* Akım Tanıtım Bölümü */
+    .akim-section {
+      padding: 2rem 1rem;
+      background-color: #2c2c2c;
+      margin: 2rem auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      max-width: 900px;
+    }
+    .akim-section p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+    /* Slider */
+    .slider-container {
+      position: relative;
+      max-width: 1200px;
+      width: 90%;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.8s ease;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      filter: brightness(0.8);
+      transition: filter 0.8s ease;
+    }
+    .slide:hover img {
+      filter: brightness(1);
+    }
+    .slide-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+    }
+    .slide-overlay h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .slide-overlay p {
+      font-size: 1rem;
+      color: #ddd;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .nav-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .nav-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+    .nav-btn.prev {
+      left: 20px;
+    }
+    .nav-btn.next {
+      right: 20px;
+    }
+    /* Şiirler Bölümü */
+    .siirler-section {
+      padding: 2rem 1rem;
+      background-color: #2c2c2c;
+      margin: 2rem auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      max-width: 900px;
+    }
+    .siir {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #1f1f1f;
+      border-left: 5px solid #1976d2;
+      border-radius: 5px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    .siir:nth-child(1) { animation-delay: 0.2s; }
+    .siir:nth-child(2) { animation-delay: 0.4s; }
+    .siir:nth-child(3) { animation-delay: 0.6s; }
+    .siir h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .siir p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Şair Kartları */
+    .card {
+      background: #1f1f1f;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card-img-top {
+      object-fit: cover;
+      height: 300px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #1976d2;
+    }
+    .card-text { font-size: 0.95rem; color: #ccc; }
+    .card ul { list-style-type: disc; padding-left: 1rem; margin-bottom: 0; color: #ccc; }
+    /* Footer */
+    footer {
+      background-color: #121212;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">İkinci Yeni</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#akim">Akım Tanıtımı</a></li>
+          <li class="nav-item"><a class="nav-link" href="#siirler">Örnek Şiirler</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sairler">Şairler & Eserler</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <h1>İkinci Yeni Akımı</h1>
+      <p>Modern Türk şiirinde devrim yaratan özgün anlatım</p>
+    </div>
+  </header>
+
+  <!-- Akım Tanıtım Bölümü -->
+  <section id="akim" class="akim-section container">
+    <h2 class="section-title">İkinci Yeni Akımının Detaylı Tanıtımı</h2>
+    <p>
+      İkinci Yeni, 1950’lerin ortalarında ortaya çıkan ve geleneksel şiir kalıplarını reddeden, duygu ile düşüncelerin serbest ifadesini savunan bir edebi akımdır.
+      Şairler, dilin sınırlarını zorlayarak alışılmışın dışına çıkan özgün bir anlatım geliştirmiş, şiiri çok katmanlı bir sanata dönüştürmüştür.
+    </p>
+    <p>
+      Bu akım; aşk, ölüm, yalnızlık, zaman ve varoluş gibi evrensel temaları, karmaşık metaforlar, semboller ve çağrışımlarla işleyerek okuyucuyu kendi yorumunu katmaya teşvik eder.
+      Aynı zamanda, İkinci Yeni şairleri toplumsal eleştirileri, bireysel duyarlılıkları ve modern yaşamın paradokslarını da şiirlerine yansıtmışlardır.
+    </p>
+    <p>
+      İkinci Yeni, edebi devrimin bir simgesi olarak, modern Türk şiirinin gelişiminde köklü değişikliklere öncülük etmiş ve şairlere kendilerini ifade edebilecekleri yeni bir alan açmıştır.
+    </p>
+  </section>
+
+  <!-- Şiirler Bölümü (Şiirleri olduğu gibi yazıyoruz) -->
+  <section id="siirler" class="siirler-section container">
+    <h2 class="section-title">Örnek Şiirler</h2>
+    <div class="siir">
+      <h3>Cemal Süreya - Sizin Hiç Babanız Öldü mü?</h3>
+      <p>
+        Sizin hiç babanız öldü mü?<br>
+        Benim bir kere öldü kör oldum.<br>
+        Yıkadılar, aldılar, götürdüler,<br>
+        Babamdan ummazdım bunu, kör oldum.
+      </p>
+    </div>
+    <div class="siir">
+      <h3>Cemal Süreya - Üvercinka</h3>
+      <p>
+        Böylece bir kere daha<br>
+        Boynun kıldan ince,<br>
+        Böylece bir kere daha<br>
+        Omuzun üveyik yuvası,<br>
+        Böylece bir kere daha...
+      </p>
+    </div>
+    <div class="siir">
+      <h3>Cemal Süreya - Beni Öp Sonra Doğur Beni</h3>
+      <p>
+        Aşkın rüzgarında savrulduk biz,<br>
+        Her nefeste yeniden doğduk,<br>
+        Yitirip kaybettiklerimiz arasında,<br>
+        Umutları yeniden ördük.
+      </p>
+    </div>
+  </section>
+
+  <!-- Şairler & Eserler Bölümü -->
+  <section id="sairler" class="container mb-5">
+    <h2 class="section-title">Önemli İkinci Yeni Şairleri ve Eserleri</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <!-- Cemal Süreya Kartı -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="Cemal_Süreya.jpg" class="card-img-top" alt="Cemal Süreya">
+          <div class="card-body">
+            <h5 class="card-title">Cemal Süreya</h5>
+            <p class="card-text">İkinci Yeni'nin en etkili isimlerinden olan Cemal Süreya, aşk, yaşam ve ölüm temalarını derin imgelerle ifade eden şiirleriyle tanınır.</p>
+            <strong>Önemli Eserleri:</strong>
+            <ul>
+              <li>Üvercinka</li>
+              <li>Göçebe</li>
+              <li>Beni Öp Sonra Doğur Beni</li>
+              <li>Sevda Sözleri</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Edip Cansever Kartı -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="edip_cansever.jpg" class="card-img-top" alt="Edip Cansever">
+          <div class="card-body">
+            <h5 class="card-title">Edip Cansever</h5>
+            <p class="card-text">Modern Türk şiirinin önemli temsilcilerinden olan Edip Cansever, dilin sınırlarını zorlayan ve derin anlamlar içeren şiirleriyle dikkat çeker.</p>
+            <strong>Önemli Eserleri:</strong>
+            <ul>
+              <li>Ben Ruhi Bey Nasılım</li>
+              <li>İkindi Üstü</li>
+              <li>Saklı Uçuş</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="Ülkü_Tamer.jpg" class="card-img-top" alt="Cemal Süreya">
+          <div class="card-body">
+            <h5 class="card-title">Ülkü Tamer</h5>
+            <p class="card-text"> Ülkü Tamer, Türk şair, yazar, gazeteci, oyuncu ve çevirmen olarak edebiyat dünyasında önemli bir yere sahiptir. İkinci Yeni şiir akımının önde gelen temsilcilerinden biri olarak tanınır. İlk şiiri "Dünyanın Bir Köşesinden Lucia" 1954 yılında Kaynak Dergisi'nde yayımlanmıştır. İlk şiir kitabı ise 1959 yılında basılan "Soğuk Otların Altında"dır.</p>
+            <strong>Önemli Eserleri:</strong>
+            <ul>
+              <li>Soğuk Otların Altında (1959)</li>
+              <li>Gök Onları Yanıltmaz (1960)</li>
+              <li>Ezra ile Gary (1962)</li>
+              <li>Virgülün Başından Geçenler (1965)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+         
+       
+     
+      
+      <!-- Turgut Uyar Kartı -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="turgut_uyar.jpeg" class="card-img-top" alt="Turgut Uyar">
+          <div class="card-body">
+            <h5 class="card-title">Turgut Uyar</h5>
+            <p class="card-text">Duygusal derinliği ve yenilikçi üslubuyla tanınan Turgut Uyar, İkinci Yeni akımının önemli kalemlerinden biridir.</p>
+            <strong>Önemli Eserleri:</strong>
+            <ul>
+              <li>Arz-ı Hal</li>
+              <li>Dünyanın En Güzel Arabistanı</li>
+              <li>Toplu Şiirler</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Made by Vaheyy.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle (Popper included) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Basit Slider JS -->
+  <script>
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.nav-btn.prev');
+    const nextBtn = document.querySelector('.nav-btn.next');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+      sliderWrapper.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    });
+  </script>
+</body>
+</html>
